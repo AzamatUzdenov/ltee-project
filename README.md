@@ -10,12 +10,16 @@ You need [Pixi](https://pixi.prefix.dev/latest/) and an internet connection.
 Then, from this folder:
 
 ```bash
-pixi install          # builds the exact environment recorded in pixi.lock
+pixi install --locked # builds the environment recorded in pixi.lock
 pixi run reproduce    # downloads the raw data and rebuilds every result
 ```
 
 `pixi run reproduce` must work on a fresh clone of this repository. A GitHub
 Action (`.github/workflows/reproduce.yml`) checks that on every push.
+
+The analysis runs on Linux and macOS in the `pipeline` environment. The
+default environment also supports Windows; use WSL2 for the full analysis
+on Windows.
 
 ## What is where
 
@@ -55,16 +59,23 @@ The reference assembly is GCA_000017985.1 (REL606, CP000819.1), from NCBI.
 Provider MD5 values and course SHA-256 values are recorded in `metadata/`.
 Run `python scripts/download_data.py` to download and verify the raw files;
 use `--verify-only` to check files already present.
-Raw data is read-only and excluded from Git. Analysis results have not yet
-been generated; later lessons will add the commands to regenerate them.
+Raw data is read-only and excluded from Git. `pixi run reproduce` verifies
+the data, runs FastQC and MultiQC, and rebuilds alignments, variant calls
+and summary statistics under `results/`.
 
 ## Current progress
 
 This repository is being built step by step for The Art of Reproducible
-and Open Science (Aziz Khan), Fall 2026. The template's `reproduce` task is
-currently a placeholder. A passing Reproduce check at this stage verifies
-environment setup and that placeholder, not the scientific analysis.
-The variant-calling pipeline and report will be added in later lessons.
+and Open Science (Aziz Khan), Fall 2026. Lesson 05 replaces the placeholder
+with data verification, quality control and variant calling. The default
+minimum read depth is 2; the script accepts a depth and an output folder:
+
+```bash
+pixi run -e pipeline bash scripts/run_variant_calling.sh 10 results-depth10
+```
+
+The MultiQC report is `results/qc/multiqc/multiqc_report.html`; filtered
+variant calls are in `results/vcf/`. The Quarto report comes in a later lesson.
 
 ## How to cite
 
