@@ -7,3 +7,5 @@
 - 2026-11-03: Configured a Linux/macOS pipeline feature and environment for FastQC, MultiQC, BWA, samtools and bcftools; the default environment retains Windows support. Verified that all five tools start on macOS.
 
 - 2026-11-03: Replaced the reproduce placeholder with data verification, QC and variant calling. The local run at minimum read depth 2 produced 25, 775 and 10 variants for SRR2584863, SRR2584866 and SRR2589044, matching the current course example. FastQC flagged base composition as FAIL for three FASTQs and GC/length warnings for all six; these flags remain in the MultiQC report. The earlier plan to compare depths 2 and 10 remains a separate analysis step.
+
+- 2026-11-04. Re-ran `pixi run reproduce` in the VS Code terminal. Data verification, QC and variant calling completed. Counts remained 25, 775 and 10 for SRR2584863, SRR2584866 and SRR2589044. All six BAM files passed `samtools quickcheck`, and the VCF records matched the previous run. Three base-composition FAIL flags and the GC/length warnings remain in the QC reports.
