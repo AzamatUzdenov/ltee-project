@@ -61,7 +61,8 @@ Run `python scripts/download_data.py` to download and verify the raw files;
 use `--verify-only` to check files already present.
 Raw data is read-only and excluded from Git. `pixi run reproduce` verifies
 the data, runs FastQC and MultiQC, and rebuilds alignments, variant calls
-and summary statistics under `results/`.
+and summary statistics under `results/`. It also renders the Quarto report
+at `reports/ltee-report.html`.
 
 ## Current progress
 
@@ -74,8 +75,9 @@ minimum read depth is 2; the script accepts a depth and an output folder:
 pixi run -e pipeline bash scripts/run_variant_calling.sh 10 results-depth10
 ```
 
-The MultiQC report is `results/qc/multiqc/multiqc_report.html`; filtered
-variant calls are in `results/vcf/`. The Quarto report comes in a later lesson.
+The MultiQC report is `results/qc/multiqc/multiqc_report.html`. Filtered
+variant calls are in `results/vcf/`. The read-quality report is generated
+from `reports/ltee-report.qmd` with `pixi run report`.
 
 ## How to cite
 
