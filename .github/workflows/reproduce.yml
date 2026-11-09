@@ -31,13 +31,15 @@ jobs:
       - name: Committed files must not change when the analysis runs
         run: git status --porcelain && git diff --exit-code
 
-      - name: Keep the results for 7 days
+      - name: Keep reports and final results for 7 days
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: results
           path: |
-            results/
+            results/vcf/
+            results/stats/
+            results/qc/multiqc/multiqc_report.html
             reports/*.html
           if-no-files-found: ignore
           retention-days: 7
