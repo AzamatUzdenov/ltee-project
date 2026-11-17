@@ -1,0 +1,12 @@
+executor: slurm
+jobs: 4
+cores: 16
+slurm-no-account: true
+slurm-status-command: squeue
+slurm-keep-successful-logs: true
+slurm-init-seconds-before-status-checks: 10
+latency-wait: 30
+default-resources:
+  slurm_partition: "ws-ia"
+  mem_mb: 4000
+  runtime: 30
