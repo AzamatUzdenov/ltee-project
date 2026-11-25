@@ -1,16 +1,37 @@
 # LTEE variant calling
 
-Compare mutations in three *E. coli* clones from the LTEE.
+Mutations in three *E. coli* LTEE clones (Ara-3, 5,000–50,000 generations).
+We compare variant counts and their sensitivity to minimum read depth.
+Course project by Azamat Uzdenov; based on
+[Tenaillon et al. (2016)](https://doi.org/10.1038/nature18959) and
+[Data Carpentry](https://datacarpentry.github.io/wrangling-genomics/).
 
-Requires [Pixi](https://pixi.prefix.dev/), Linux/macOS or WSL2 on Windows. Runs on CPU.
+Requires [Pixi](https://pixi.prefix.dev/), internet, Linux/macOS or WSL2.
+CPU only. Software occupied 3.7 GiB and raw data 332 MiB on an Apple M3 Pro
+with 18 GiB RAM; keep at least 10 GiB free for installation and analysis.
+Containers need additional space. [Structure and measurements](docs/structure.md).
 
-```bash
+```sh
+git clone https://github.com/AzamatUzdenov/ltee-project.git
+cd ltee-project
 pixi install --locked
 pixi run reproduce
 ```
 
-Outputs are in `results/` and `reports/ltee-report.html`.
+Downloads are checksum-verified; Snakemake runs the analysis and Quarto renders
+`reports/ltee-report.html`. Results are regenerated in `results/`.
+At minimum depth 2, variant counts are 25, 775 and 10 for SRR2584863,
+SRR2584866 and SRR2589044. `pixi run compare-workflows` checks Nextflow
+against Snakemake. CI also compares all records from the Docker pipeline.
 
-[Data](metadata/) · [Code](scripts/) · [Report](reports/ltee-report.qmd) · [Quarto practice](docs/notes.md) · [Study](https://doi.org/10.1038/nature18959) · [Cite](CITATION.cff) · [Contact](https://github.com/AzamatUzdenov/ltee-project/issues)
+[Data and sources](metadata/) · [Code](scripts/) · [Report](reports/ltee-report.qmd) ·
+[Container](containers/) · [Software versions](docs/software-versions.txt) ·
+[Workflow](docs/rulegraph.svg) · [Cite](CITATION.cff) ·
+[Questions](https://github.com/AzamatUzdenov/ltee-project/issues) ·
+[Contribute](CONTRIBUTING.md)
 
-Based on the [course template](https://github.com/khan-lab/cbio7501-f26/tree/main/templates/cookiecutter-repro-project). [MIT license](LICENSE).
+Code: [MIT](LICENSE). Original report text and figures:
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+[Teaching reads](https://doi.org/10.6084/m9.figshare.7726454.v3) retain the provider's CC0 terms; the NCBI reference keeps its source terms. Adapted Data Carpentry material retains
+CC BY 4.0 attribution. Based on the
+[course template](https://github.com/khan-lab/cbio7501-f26/tree/main/templates/cookiecutter-repro-project).

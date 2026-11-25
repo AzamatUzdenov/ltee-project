@@ -11,3 +11,18 @@
 - 2026-11-04. Re-ran `pixi run reproduce` in the VS Code terminal. Data verification, QC and variant calling completed. Counts remained 25, 775 and 10 for SRR2584863, SRR2584866 and SRR2589044. All six BAM files passed `samtools quickcheck`, and the VCF records matched the previous run. Three base-composition FAIL flags and the GC/length warnings remain in the QC reports.
 
 - 2026-11-17. Report minimum depth 2 for comparability with Data Carpentry. The increase in variant counts over generations holds at all four depths (2, 5, 10, 15). See the sensitivity figure in the report.
+
+
+- 2026-11-25. Completed the environment portability exercises. The local amd64
+  container built at 18:41:42–18:44:50 Asia/Dubai, but its first full analysis hit
+  disk exhaustion. The image archive was transferred to MBZUAI at
+  18:54:27–18:54:55; only the new temporary Colima VM was removed, restoring
+  11 GiB locally. [PR #10](https://github.com/AzamatUzdenov/ltee-project/pull/10)
+  compares every container VCF record with native results; both clean Linux
+  checks passed (25, 775, 10). Commit `df10851` is dated 18:53:47; it entered
+  main at 19:02:22. These are different events, not backdated work.
+- 2026-11-25. Slurm 325840 started at 19:01:46 Asia/Dubai; its clean-clone stage
+  began at 19:01:52. Reproduction passed. Its exact command start was not logged separately from installation. GNU time: 3m11.24s, maximum RSS 408,216 KiB, exit 0. Citation validation and
+  clean tracked state passed. Initial scheduling attempts exposed a missing
+  GNU time utility and already read-only raw files; the corrected run used
+  an isolated `pixi exec` tool and preserved the protected inputs.

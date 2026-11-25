@@ -29,6 +29,9 @@ jobs:
           pixi-version: v0.83.0
           locked: true   # fail if pixi.lock does not match pixi.toml
 
+      - name: Validate citation metadata
+        run: pixi exec cffconvert --validate -i CITATION.cff
+
       - name: Rebuild every result from raw data
         run: pixi run reproduce
 
@@ -61,7 +64,7 @@ jobs:
           docker inspect "$registry_image:0.1.0" --format '{{json .RepoDigests}}' > results/container-digest.txt
 
       - name: Committed files must not change when the analysis runs
-        run: git status --porcelain && git diff --exit-code
+        run: test -z "$(git status --porcelain)"
 
       - name: Keep reports and final results for 7 days
         if: always()
