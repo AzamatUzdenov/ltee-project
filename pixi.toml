@@ -6,7 +6,7 @@ description = "Variant calling on three E. coli samples from the Long-Term Evolu
 authors = ["Azamat Uzdenov <azam02334@gmail.com>"]
 channels = ["conda-forge", "bioconda"]
 platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
-version = "1.0.0"
+version = "1.0.1"
 
 [dependencies]
 python = "3.13.*"

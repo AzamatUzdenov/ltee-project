@@ -33,3 +33,16 @@ docker save ltee-project:0.1.0 | gzip > containers/ltee-project-0.1.0.tar.gz
 
 On a cluster with Apptainer/Singularity, use `apptainer.def` after the registry
 image is available. Run image conversion and analysis inside a scheduler allocation.
+
+
+The saved image and self-contained report are public [release assets](https://github.com/AzamatUzdenov/ltee-project/releases/tag/v1.0.0).
+GitHub confirmed the archive SHA-256 above; report SHA-256:
+`1cac7f3194d25d4146bd76dab6205f1af1983dc7213a379ddd7005dd23cbbf3c`.
+The saved image was converted to SIF with SingularityCE 4.1.1 on MBZUAI Slurm
+and ran the unchanged pipeline with identical variant records. For that route:
+
+```sh
+gunzip -c ltee-project-0.1.0.tar.gz > ltee-project-0.1.0.tar
+singularity build ltee-project-0.1.0.sif docker-archive:$PWD/ltee-project-0.1.0.tar
+singularity exec --cleanenv --bind "$PWD:/work" --pwd /work ltee-project-0.1.0.sif bash scripts/run_variant_calling.sh 2 results/container-check
+```

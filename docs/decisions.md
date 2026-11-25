@@ -26,3 +26,31 @@
   clean tracked state passed. Initial scheduling attempts exposed a missing
   GNU time utility and already read-only raw files; the corrected run used
   an isolated `pixi exec` tool and preserved the protected inputs.
+
+- 2026-11-25. Slurm 325871 completed with exit 0 at 19:19:43 Asia/Dubai.
+  SIF conversion began 19:08:55; the unchanged shell pipeline began 19:13:39
+  and every VCF record matched (25, 775, 10). The missing-bind exercise failed
+  as expected. Conda YAML creation began 19:15:03 and ran samtools 1.25 /
+  htslib 1.25 and FastQC 0.13.0. At 19:17:50 the macOS ARM64 explicit-spec
+  exercise began on Linux; execution failed with code 126, as expected.
+  The two disposable Conda environments were removed. Logs are retained in
+  `results/completion-20261125/cluster/` (excluded from Git).
+- 2026-11-25. Documentation commit `4806f3d` at 19:13:53 followed `df10851`
+  by 20m06s. Both [PR #11](https://github.com/AzamatUzdenov/ltee-project/pull/11)
+  checks passed. Main advanced to that exact commit at 19:25:06, without an
+  extra merge commit. Release `v1.0.0` was published at 19:25:08; Zenodo created
+  the open archive at 19:25:15, DOI [10.5281/zenodo.24536622](https://doi.org/10.5281/zenodo.24536622).
+  Its MD5 and all 52 archived files were verified against the released commit.
+  The separate concept DOI is `10.5281/zenodo.24536621`.
+
+- 2026-11-25. The official course checker passed all 20 automatic checks on
+  the documentation/DOI update. Because the first archive necessarily preceded
+  its DOI badge, a new version is prepared with its DOI reserved before the
+  source commit. Published tags and the first archive are kept unchanged.
+  At the final scheduler query, Slurm had already purged job 325871; completion
+  is evidenced by the saved controller log and exit-status file (0), rather
+  than a retained scheduler history entry.
+
+  The new version reserves `10.5281/zenodo.24536932` before committing, so
+  its citation and badge identify its own immutable archive. It will be
+  published only after the exact release ZIP is uploaded and checked.

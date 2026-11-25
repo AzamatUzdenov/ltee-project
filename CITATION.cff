@@ -10,5 +10,6 @@ authors:
     orcid: "https://orcid.org/0009-0007-9124-7349"
 repository-code: "https://github.com/AzamatUzdenov/ltee-project"
 license: MIT
-version: 1.0.0
+version: 1.0.1
 date-released: "2026-11-25"
+doi: 10.5281/zenodo.24536932
