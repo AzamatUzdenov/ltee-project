@@ -27,7 +27,7 @@ SRR2584866 and SRR2589044. `pixi run compare-workflows` checks Nextflow
 against Snakemake. CI also compares all records from the Docker pipeline.
 
 [Data and sources](metadata/) · [Code](scripts/) · [Report](reports/ltee-report.qmd) ·
-[Container](containers/) · [Saved image and HTML report](https://github.com/AzamatUzdenov/ltee-project/releases/tag/v1.0.0) · [Software versions](docs/software-versions.txt) ·
+[Container](containers/) · [Archived image and HTML report](https://doi.org/10.5281/zenodo.24536518) · [Software versions](docs/software-versions.txt) ·
 [Workflow](docs/rulegraph.svg) · [Cite](CITATION.cff) ·
 [Questions](https://github.com/AzamatUzdenov/ltee-project/issues) ·
 [Contribute](CONTRIBUTING.md)

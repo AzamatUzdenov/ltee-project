@@ -35,7 +35,10 @@ On a cluster with Apptainer/Singularity, use `apptainer.def` after the registry
 image is available. Run image conversion and analysis inside a scheduler allocation.
 
 
-The saved image and self-contained report are public [release assets](https://github.com/AzamatUzdenov/ltee-project/releases/tag/v1.0.0).
+The saved image and self-contained report are permanently archived on
+[Zenodo](https://doi.org/10.5281/zenodo.24536518), linked to the
+[code release](https://doi.org/10.5281/zenodo.24536932). They are also public
+[GitHub release assets](https://github.com/AzamatUzdenov/ltee-project/releases/tag/v1.0.0).
 GitHub confirmed the archive SHA-256 above; report SHA-256:
 `1cac7f3194d25d4146bd76dab6205f1af1983dc7213a379ddd7005dd23cbbf3c`.
 The saved image was converted to SIF with SingularityCE 4.1.1 on MBZUAI Slurm

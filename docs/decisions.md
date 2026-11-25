@@ -54,3 +54,19 @@
   The new version reserves `10.5281/zenodo.24536932` before committing, so
   its citation and badge identify its own immutable archive. It will be
   published only after the exact release ZIP is uploaded and checked.
+
+- 2026-11-25. Commit `97e1ed1` at 19:40:06 Asia/Dubai followed `4806f3d`
+  by 26m13s. Both PR #12 checks passed. Release `v1.0.1` was published at
+  19:51:10 after a transient GitHub tag-push error. Zenodo published its code
+  archive at 19:54:59, DOI [10.5281/zenodo.24536932](https://doi.org/10.5281/zenodo.24536932).
+  The downloaded archive matched all 52 released files at `97e1ed1`; its MD5
+  is `4bdd50de995bccdf30fd8f1a81bed721`. A fresh clone of the tag passed all
+  20 official automatic course checks. These checks do not replace the
+  partner's reproduce report.
+- 2026-11-25. Zenodo published the separate saved-image and rendered-report
+  archive at 19:52:11 Asia/Dubai, DOI
+  [10.5281/zenodo.24536518](https://doi.org/10.5281/zenodo.24536518).
+  Both uploaded file sizes and MD5 checksums matched the local artifacts.
+  Both DOIs resolve publicly; the two records link to each other.
+  Automatic archival of future LTEE GitHub releases was re-enabled after
+  the manual version publication (the toggle time was not logged separately).
