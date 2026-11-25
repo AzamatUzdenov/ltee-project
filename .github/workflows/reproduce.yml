@@ -11,6 +11,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   reproduce:
     runs-on: ubuntu-latest
@@ -28,6 +32,34 @@ jobs:
       - name: Rebuild every result from raw data
         run: pixi run reproduce
 
+      - name: Build the Linux container from the same lock file
+        run: |
+          docker build --platform linux/amd64 -f containers/Dockerfile \
+            --build-arg ENV_NAME=pipeline \
+            --label org.opencontainers.image.source=https://github.com/${{ github.repository }} \
+            --label org.opencontainers.image.revision=${{ github.sha }} \
+            -t ltee-project:0.1.0 .
+
+      - name: Reproduce in the container and compare every variant record
+        run: |
+          docker run --rm --platform linux/amd64 -v "$PWD":/work -w /work \
+            ltee-project:0.1.0 bash scripts/run_variant_calling.sh 2 results/container-check
+          pixi run -e pipeline python scripts/compare_vcfs.py results/vcf results/container-check/vcf
+          docker image inspect ltee-project:0.1.0 --format '{{.Id}}' > results/container-image.txt
+
+      - name: Publish the checked container
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          registry_image="ghcr.io/${GITHUB_REPOSITORY,,}"
+          printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker tag ltee-project:0.1.0 "$registry_image:0.1.0"
+          docker tag ltee-project:0.1.0 "$registry_image:sha-${GITHUB_SHA}"
+          docker push "$registry_image:0.1.0"
+          docker push "$registry_image:sha-${GITHUB_SHA}"
+          docker inspect "$registry_image:0.1.0" --format '{{json .RepoDigests}}' > results/container-digest.txt
+
       - name: Committed files must not change when the analysis runs
         run: git status --porcelain && git diff --exit-code
 
@@ -39,6 +71,8 @@ jobs:
           path: |
             results/vcf/
             results/stats/
+            results/container-image.txt
+            results/container-digest.txt
             results/qc/multiqc/multiqc_report.html
             reports/*.html
           if-no-files-found: ignore

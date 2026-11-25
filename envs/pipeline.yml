@@ -1,0 +1,24 @@
+name: pipeline
+channels:
+- conda-forge
+- bioconda
+- nodefaults
+dependencies:
+- fastqc >=0.13.0,<0.14
+- multiqc >=1.35,<2
+- bwa >=0.7.19,<0.8
+- samtools >=1.25,<2
+- bcftools >=1.25,<2
+- snakemake >=9.27.1,<10
+- graphviz >=14.1.2,<15
+- snakefmt >=2.1.0,<3
+- snakemake-executor-plugin-slurm >=2.8.0,<3
+- nextflow >=26.10.6,<27
+- python 3.13.*
+- quarto >=1.9
+- jupyterlab >=4
+- ipykernel >=7
+- pandas >=2
+- matplotlib >=3.9
+- papermill >=2.6
+- pyyaml >=6.0.3,<7

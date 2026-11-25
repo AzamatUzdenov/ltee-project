@@ -8,3 +8,6 @@ work/
 .snakemake/
 .nextflow/
 *.sif
+
+# Saved images are release archives, never Docker build inputs.
+containers/*.tar.gz
